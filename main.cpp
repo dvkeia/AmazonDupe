@@ -325,6 +325,9 @@ int main()
     node.insert(4);
     node.insert(5);
     node.display(node.getRoot());
-
+    string s = "Test hash string";
+    cout << s << endl;
+    int x = std::hash<string>{}(s) % 100000;
+    cout << x << endl;
     return 0;
 }
