@@ -5,27 +5,32 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-const int TABLESIZE = 100000;
+const int TABLESIZE = 150000;
 
 class HashMap{
 
 private:
+    int hashFunction(string k);
+    int numNodes;
+
+public:
     struct HashNode{
         string key;
-        pair<string, string> value;
-        HashNode(string k, pair<string, string> v){
+        pair<float, float> value;
+        HashNode(string k, pair<float, float> v){
             key = k;
             value = v;
         }
     };
     HashNode** table; //pointer to pointer; pointer to array of hashnode pointers
 
-    int hashFunction(string k);
-
-public:
     HashMap();
     void insert(string name, string price, string rating);
-    pair<string, string> searchName(string name);
+    pair<float, float> searchName(string name);
+    vector<HashNode> searchKeyword(string keyword);
+    vector<HashNode> searchKeywordPriceRating(string keyword, float priceOrating, string por);
     ~HashMap();
+    int size();
+    float loadFactor();
 };
 
