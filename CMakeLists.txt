@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(AmazonDupe
         main.cpp
         HashMap.h
-        HashMap.cpp)
+        HashMap.cpp
+        n-ary.h)
