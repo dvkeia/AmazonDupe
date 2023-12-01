@@ -13,25 +13,28 @@ int main()
     //In main, read in the dataset, store values in the structures
 
     //first read into hashmap
-    //HashMap hm;
-    /*while(hm.size() < 100000)
+    HashMap hm;
+    hm.insert("book1", "15", "3.2");
+    hm.insert("book2", "16", "3.3");
+    hm.insert("book3", "17", "3.4");
+    hm.insert("book4", "18", "3.5");
+    hm.insert("book5", "19", "3.6");
+    hm.insert("book6", "20", "3.7");
+    hm.insert("book7", "14", "3.1");
+    hm.insert("book8", "13", "2.6");
+    hm.insert("book9", "12", "3");
+    hm.insert("book10", "11", "2.8");
+
+    vector<HashMap::HashNode> v1 = hm.searchKeywordPriceRating("book", 45, "price");
+    for(int i = 0; i < v1.size(); i++)
     {
-        //read in name, price, rating from file
-        //insert
+        cout << v1[i].key << " " << v1[i].value.first << endl;
     }
-
-    //next read into tree*/
-
-    Tree tree;
-    for (int i = 0; i < 100000; ++i) {
-
-        string s = "ABC" + to_string('a' + i - 97);
-        //cout << s.find("AB") << endl;
-        tree.insert(&s, i % 3);
-
+    cout << "\n";
+    vector<HashMap::HashNode> v2 = hm.searchKeywordPriceRating("book", 1.0, "rating");
+    for(int i = 0; i < v2.size(); i++)
+    {
+        cout << v2[i].key << " " << v2[i].value.second << endl;
     }
-    //cout << endl;
-    tree.print();
-    //tree.root -> between(10, 90);
-    string s = "ABC9";
+     //read into tree
 }

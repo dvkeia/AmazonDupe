@@ -5,6 +5,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
+//value of initial map size/capacity
 const int TABLESIZE = 150000;
 
 class HashMap{
@@ -14,6 +15,7 @@ private:
     int numNodes;
 
 public:
+    //struct to hold values within hash table; will store key (product name), and values (pair of price and rating)
     struct HashNode{
         string key;
         pair<float, float> value;
@@ -24,6 +26,7 @@ public:
     };
     HashNode** table; //pointer to pointer; pointer to array of hashnode pointers
 
+    //public functions
     HashMap();
     void insert(string name, string price, string rating);
     pair<float, float> searchName(string name);
@@ -32,5 +35,21 @@ public:
     ~HashMap();
     int size();
     float loadFactor();
+
+    //comparator to sort prices of objects
+    struct ComparePrice{
+        bool operator()(HashNode const& h1, HashNode const& h2)
+        {
+            return h1.value.first > h2.value.first;
+        }
+    };
+
+    //comparator to sort ratings of objects
+    struct CompareRating{
+        bool operator()(HashNode const& h1, HashNode const& h2)
+        {
+            return h1.value.second < h2.value.second;
+        }
+    };
 };
 
