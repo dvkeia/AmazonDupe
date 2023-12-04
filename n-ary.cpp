@@ -16,7 +16,9 @@ Node::Node(string nam, double val, double val2) {
 }
 
 void Node::insert(string& nam, double val, double val2) {
+    //check if value is less than the node value
     if (val < value) {
+        //already full
         if (less.size() == n) {
             if (val <= less[0]->value) {
                 less[0]->insert(nam, val, val2);
@@ -28,6 +30,7 @@ void Node::insert(string& nam, double val, double val2) {
             }
             for (int i = n - 2; i >= 0; --i) {
                 if (val >= less[i]->value) {
+                    // put it either on the more than v[i] or less than v[i+1]
                     srand(time(nullptr));
                     if (rand() % 2 == 0) {
                         less[i]->insert(nam, val, val2);
@@ -46,6 +49,7 @@ void Node::insert(string& nam, double val, double val2) {
         }
     }
     else {
+        // array is full
         if (more.size() == n) {
             if (val <= more[0]->value) {
                 more[0]->insert(nam, val, val2);
@@ -57,6 +61,7 @@ void Node::insert(string& nam, double val, double val2) {
             }
             for (int i = n - 2; i >= 0; --i) {
                 if (val >= more[i]->value) {
+                    // put it either on the more than v[i] or less than v[i+1]
                     srand(time(nullptr));
                     if (rand() % 2 == 0) {
                         more[i]->insert(nam, val, val2);
@@ -75,7 +80,7 @@ void Node::insert(string& nam, double val, double val2) {
         }
     }
 }
-
+//standard bubble sort
 vector<Node*> Node::sort(vector<Node*> children) {
     for (int i = 0; i < children.size(); ++i) {
         for (int j = i + 1; j < children.size(); ++j) {
@@ -103,7 +108,7 @@ void Tree::insert(string& nam, double val, double val2) {
 void Tree::print() {
     queue<Node*> q;
     q.push(root);
-
+// level order traversal
     while (!q.empty()) {
         Node* node = q.front();
         cout << node->name << " " << node->value << " " << node->value2 << endl;
@@ -125,7 +130,7 @@ vector<Node*> Tree::find(string& nam, bool sort) {
 
     queue<Node*> q;
     q.push(root);
-
+// level order traversal of tree
     while (!q.empty()) {
         Node* node = q.front();
 
@@ -142,7 +147,7 @@ vector<Node*> Tree::find(string& nam, bool sort) {
 
         q.pop();
     }
-
+// gets 5 best elements in order depending on if sort is true of false
     vector<Node*> ret;
     if (sort) {
         for (int i = 0; i < v.size() && i < 5; ++i) {
@@ -185,7 +190,7 @@ vector<Node*> Tree::findKey(string& nam, bool sort) {
 
     queue<Node*> q;
     q.push(root);
-
+// level order traversal
     while (!q.empty()) {
         Node* node = q.front();
 
@@ -202,9 +207,9 @@ vector<Node*> Tree::findKey(string& nam, bool sort) {
 
         q.pop();
     }
-
+// gets 5 best elements in order depending on if sort is true of false
     vector<Node*> ret;
-    if (sort) {
+    if (sort) { //sorting by price
         for (int i = 0; i < v.size() && i < 5; ++i) {
             double min = 1000000;
             int minIndex = -1;
@@ -219,7 +224,7 @@ vector<Node*> Tree::findKey(string& nam, bool sort) {
             v[minIndex] = v[i];
         }
     }
-    else {
+    else { //sorting by rating
         for (int i = 0; i < v.size() && i < 5; ++i) {
             double min = -1;
             int minIndex = -1;

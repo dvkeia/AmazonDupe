@@ -8,6 +8,7 @@ using namespace std;
 //value of initial map size/capacity
 const int TABLESIZE = 150000;
 
+//Citation: https://www.tutorialspoint.com/cplusplus-program-to-implement-hash-tables
 class HashMap{
 
 private:
@@ -29,7 +30,7 @@ public:
     //public functions
     HashMap();
     void insert(string name, string price, string rating);
-    pair<float, float> searchName(string name);
+    vector<HashNode> searchName(string name);
     vector<HashNode> searchKeyword(string keyword);
     vector<HashNode> searchKeywordPriceRating(string keyword, float priceOrating, string por);
     ~HashMap();

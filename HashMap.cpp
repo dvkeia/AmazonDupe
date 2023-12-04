@@ -57,26 +57,26 @@ void HashMap::insert(std::string name, std::string price, std::string rating) {
 }
 
 //searching for exact name, use properties of hash table to search based on hash value
-pair<float, float> HashMap::searchName(std::string name) {
+vector<HashMap::HashNode> HashMap::searchName(std::string name) {
+    vector<HashMap::HashNode> ans;
     int hash = hashFunction(name);
     while(table[hash] != nullptr && table[hash]->key != name)
     {
         hash += 1; //to get to the hash key we used when adding it to table
         if(hash > TABLESIZE)
         {
-            pair<float, float> p = make_pair(-1, -1);
-            return p; //bc clearly object does not exist in map
+            return ans; //empty vector since name doesn't exist
         }
     }
 
     if(table[hash] == nullptr)
     {
-        pair<float, float> p = make_pair(-1, -1);
-        return p; //bc clearly object does not exist in map
+        return ans;
     }
     else
     {
-        return table[hash]->value;
+        ans.push_back(*table[hash]);
+        return ans;
     }
 }
 
