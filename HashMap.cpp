@@ -119,6 +119,7 @@ vector<HashMap::HashNode> HashMap::searchKeyword(string keyword) {
     return ans;
 }
 
+
 //Function to search by a keyword for the 5 cheapest items under a specific price or the 5 top items over a certain rating
 vector<HashMap::HashNode> HashMap::searchKeywordPriceRating(std::string keyword, float priceOrating, std::string por) {
     vector<HashMap::HashNode> ans;
